@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('clinics', function (Blueprint $table) {
             $table->id();
+             $table->string('name');
+            $table->string('code');
+            $table->foreignUlid('department_id');
+            $table->enum('clinic_type',['Primary','Secondary', 'Specialist', 'Emergency', 'Other']);
+            $table->enum('status',['Active','Inactive'])->default('Active');
+            $table->boolean('is_consult_charged')->default(false);
+            $table->unsignedBigInteger('consult_charge')->nullable();
+            $table->foreignUlid('created_by')->nullable();
             $table->timestamps();
         });
     }

@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('departments', function (Blueprint $table) {
-            $table->id();
+             $table->ulid('id')->primary();
+            $table->string('name');
+            $table->enum('type',['Clinical','Non-Clinical']);
+            $table->foreignUlid('created_by')->nullable();
             $table->timestamps();
         });
     }

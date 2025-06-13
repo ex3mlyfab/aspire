@@ -12,7 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('revenues', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
+            $table->nullableMorphs('revenueable');
+            $table->string('description')->nullable();
+            $table->double('amount_paid', 40,2);
+            $table->foreignUlid('created_by');
+            $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
+            $table->timestamps();
             $table->timestamps();
         });
     }

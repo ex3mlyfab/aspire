@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('service_group_lists', function (Blueprint $table) {
             $table->id();
+             $table->foreignId('service_group_id');
+            $table->foreignId('billling_sheet_service_id');
             $table->timestamps();
         });
     }

@@ -12,7 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('wallets', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
+            $table->foreignUlid('patient_id');
+            $table->string('description');
+            $table->decimal('amount', 20, 2);
+            $table->enum('type', ['credit', 'debit']); // 'credit' for income, 'debit' for expenses
+            $table->enum('status', ['pending', 'approved', 'rejected','reversed'])->default('pending'); // 'pending', 'approved', or 'rejected
+            $table->decimal('balance', 20, 2);
+            $table->foreignUlid('created_by');
             $table->timestamps();
         });
     }

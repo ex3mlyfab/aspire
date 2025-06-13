@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('billing_sheet_services', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('billing_sheet_id');
+            $table->morphs('serviceable');
+            $table->integer('patient_percentage');
+            $table->integer('company_percentage');
+            $table->double('price', 20,2);
+            $table->integer('status')->default(1);
+            $table->double('patient_pays', 20,2);
+            $table->double('company_pays', 20,2);
             $table->timestamps();
         });
     }

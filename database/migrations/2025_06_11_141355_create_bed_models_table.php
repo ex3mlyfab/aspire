@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('bed_models', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignUlid('ward_id');
+            $table->double('price');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

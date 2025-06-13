@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('income_heads', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
+            $table->string('name');
+            $table->string('code', 10)->unique();
+            $table->smallInteger('status')->default(1);
             $table->timestamps();
         });
     }

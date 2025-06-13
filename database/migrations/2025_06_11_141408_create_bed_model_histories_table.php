@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bed_model_histories', function (Blueprint $table) {
+           
             $table->id();
+            $table->string('bed_model_id');
+            $table->ulid('patient_id');
+            $table->dateTime('admitted');
+            $table->dateTime('discharged')->nullable();
             $table->timestamps();
         });
     }
