@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->double('amount_paid', 40,2);
             $table->foreignUlid('created_by');
-            $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
-            $table->timestamps();
+            $table->enum('status', ['paid', 'unpaid', 'Credit', 'Waived', 'Reversed', 'Partial-Pay'])->default('unpaid');
+
             $table->timestamps();
         });
     }
